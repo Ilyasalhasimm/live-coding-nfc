@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title color="light">
-      CEK SALDO
+      NFC Reader
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +11,23 @@
 
   </div>
 
-<ion-card class="nfc">
+  <ion-card class="nfc">
+    <ion-card-content *ngIf="nfcNumber && latitude && longitude">
+      <ion-label>NFC Event Data:</ion-label>
+      <ion-text>{{ nfcNumber }}</ion-text>
+      <ion-text>{{ latitude }}</ion-text>
+      <ion-text>{{ longitude }}</ion-text>
+    </ion-card-content>
+    <ion-card-content *ngIf="!nfcNumber || !latitude || !longitude">
+      <ion-item lines="none" class="ion-text-center">
+        <ion-label>
+          <h2>Tempelkan Kartu</h2>
+          <p>Lokasi NFC bisa berada di belakang atau depan perangkat ini</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+<!-- <ion-card class="nfc">
   <ion-card-content>
     <ion-item lines="none" class="ion-text-center">
       <ion-label>
@@ -20,7 +36,7 @@
       </ion-label>
     </ion-item>
   </ion-card-content>
-</ion-card>
+</ion-card> -->
 
 <!-- <ion-card class="nfc_aktif"> -->
   <!-- <ion-card-content> -->
@@ -33,17 +49,47 @@
   <!-- </ion-card-content> -->
 <!-- </ion-card> -->
 
-<ion-card class="center-card">
+<ion-card>
   <ion-card-content>
-    <ion-label>NFC Event Data:</ion-label>
-    <ion-text>{{ nfcNumber }}</ion-text>
-    <ion-text>{{ latitude }}</ion-text>
-    <ion-text>{{ longitude }}</ion-text>
+    <form (ngSubmit)="sendMessage()">
+    <ion-item>
+      <ion-input name="name"  [(ngModel)]="name" label="Nama" labelPlacement="stacked" placeholder="Nama"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input name="nik" [(ngModel)]="nik" label="NIK" labelPlacement="stacked" placeholder="NIK"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input name="alamat" [(ngModel)]="alamat" label="Alamat" labelPlacement="stacked" placeholder="Alamat"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Message:</ion-label>
+      <ion-textarea [(ngModel)]="message" name="message"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Send To:</ion-label>
+      <ion-select [(ngModel)]="sendTo" name="sendTo">
+        <ion-select-option value="whatsapp">WhatsApp</ion-select-option>
+        <ion-select-option value="telegram">Telegram</ion-select-option>
+        <ion-select-option value="email">Email</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button type="submit" expand="block">Kirim</ion-button>
+    </form>
   </ion-card-content>
-</ion-card> 
+</ion-card>
 
-<ion-button (click)="sendEmail()" expand="block">Kirim</ion-button>
 <ion-button (click)="history()" expand="block">lihat riwayat</ion-button>
+
+<div id="map">
+  <iframe
+    width="100%"
+    height="300"
+    frameborder="0"
+    style="border:0"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7298272946355!2d<longitude>!3d<latitude>!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f41a6448bb97%3A0x8f260eaf1e4ab77!2sJalan%20Pantai%20Pandan%20Kec.%20Samarinda%20Ulu%2C%20Kota%20Samarinda%2C%20Kalimantan%20Timur%2075157!5e0!3m2!1sen!2sid!4v1623400737403!5m2!1sen!2sid"
+    allowfullscreen
+  ></iframe>
+</div>
 
 
   

@@ -10,15 +10,101 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  email: string = "ilyasalhasimm@gmail.com";
   nfcNumber: string = '';
   //location
   latitude: number = 0;
   longitude: number = 0;
 
+  countrycode: string = "62";
+  wanumber: string = "9077050510";
+  whatsappUrl: string = "https://wa.me/";
+  telegramUrl: string = "https://t.me/";
+
+  name: string = "";
+  nik: string = "";
+  alamat: string = "";
+  message: string = "";
+  sendTo: string = "whatsapp"; // Default to WhatsApp
+  telegramUsername: string = "usernameilyas";
+
   constructor(
     private router : Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private alertController: AlertController
   ) {}
+
+  sendMessage() {
+    let directUrl = "";
+
+    if (this.sendTo === "whatsapp") {
+      const whatsappMessage = `Hi, my name is ${this.name}. NIK: ${this.nik}. Alamat: ${this.alamat}. ${this.message}`;
+      const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
+      directUrl = `${this.whatsappUrl}${this.countrycode}${this.wanumber}?text=${encodedWhatsappMessage}`;
+    } else if (this.sendTo === "telegram") {
+      const telegramMessage = `Hi, my name is ${this.name}. NIK: ${this.nik}. Alamat: ${this.alamat}. ${this.message}`;
+      directUrl = `${this.telegramUrl}${this.telegramUsername}?text=${encodeURIComponent(telegramMessage)}`;
+    } else if (this.sendTo === "email") {
+      const subject = `Message from ${this.name}`;
+      const emailLink = `mailto:${this.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(this.message)}`;
+      window.location.href = emailLink;
+    }
+
+    if (directUrl !== "") {
+      window.open(directUrl, '_blank');
+    }
+
+    // Simpan data ke localStorage
+    const formData = {
+      name: this.name,
+      nik: this.nik,
+      alamat: this.alamat,
+      message: this.message,
+      latitude: this.latitude,
+      longitude: this.longitude
+    };
+    this.saveFormData(formData);
+  }
+
+  saveFormData(formData: {
+    name: string,
+    nik: string,
+    alamat: string,
+    message: string,
+    latitude: number,
+    longitude: number
+  }) {
+    const storedData = localStorage.getItem('formData');
+    let savedData: {
+      name: string,
+      nik: string,
+      alamat: string,
+      message: string,
+      latitude: number,
+      longitude: number
+    }[] = [];
+
+    if (storedData) {
+      savedData = JSON.parse(storedData);
+    }
+
+    savedData.push(formData);
+    localStorage.setItem('formData', JSON.stringify(savedData));
+  }
+
+  trackLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+      }, (error) => {
+        console.log('Error getting location:', error);
+      });
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  }
+
 
   history() {
     this.router.navigateByUrl('history');

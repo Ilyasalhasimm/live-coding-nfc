@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -25,7 +25,7 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- <ion-card>
+  <ion-card>
     <ion-card-header>
       <ion-card-title>ilyas</ion-card-title>
       <ion-card-subtitle>2131</ion-card-subtitle>
@@ -34,5 +34,29 @@
     <ion-card-content>
       subang
     </ion-card-content>
-  </ion-card> -->
+  </ion-card>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Riwayat Pengiriman</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let key of formData">
+      <ion-label>
+        <h2>Name: {{ key.name }}</h2>
+        <p>NIK: {{ key.nik }}</p>
+        <p>Alamat: {{ key.alamat }}</p>
+        <p>Message: {{ key.message }}</p>
+        <p>{{key.latitude }}.{{ key.longitude }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
 </ion-content>
