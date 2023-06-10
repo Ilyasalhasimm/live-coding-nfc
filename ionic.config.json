@@ -1,0 +1,7 @@
+{
+  "name": "appBlank",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
