@@ -1,27 +1,91 @@
-#container {
-  text-align: center;
-
+ion-header {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  // background-color: transparent;
+  ion-toolbar {
+    text-align: center;
+    --ion-background-color: transparent;
+    ion-title {
+      font-weight:  700;
+    }
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+ion-content {
+  --ion-background-color: var(--ion-color-light-tint);
+  .elemen {
+    position: absolute;
+    width: 605px;
+    height: 360px;
+    left: calc(50% - 605px/2 + 0.5px);
+    top: -150px;
+    border-radius: 50%;
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+    background: linear-gradient(90.55deg, #4a32d3 17.37%, #632369 73.71%);
+  }
+  .nfc_aktif {
+    padding: 0;
+    margin: 30px 20px 10px 20px;
+    border-radius: 5px;
+    // --ion-background-color: var(--ion-color-light);
+    --ion-background-color: linear-gradient(90.55deg, #4a32d3 17.37%, #632369 73.71%);
+      ion-label {
+        padding-left: 10px;
+        font-weight: 800;
+      }
+    
+  }
+  .nfc {
+    height: 170px;
+    --ion-background-color: linear-gradient(105.09deg, #767780 15.51%, #5a2b5c 100%);
+    margin-top: 100px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ion-card-content {
+      ion-item {
+        --ion-background-color: transparent;
+        ion-label {
+          padding: 25px;
+          white-space: normal;
+          h2 {
+            font-weight: 700;
+            font-size: 14;
+          }
+          p {
+            font-size: 12px;
+            color: var(--ion-color-light-shade);
+          }
+        }
+      }
+    }
+  }
+    // ion-card-content {
+    //   color: var(--ion-color-light);
+    // }
+  
+  .card_detail {
+    --ion-background-color: var(--ion-color-light);
+    p {
+      font-size: 14px;
+      color: var(--ion-color-medium);
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ion-color-medium-shade);
+    }
+  }
+  .center-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh; /* Atur tinggi sesuai kebutuhan Anda */
+  }
+  // .nfc_aktif {
+  //   position:relative;
+  //   display: block;
+  // }
 }

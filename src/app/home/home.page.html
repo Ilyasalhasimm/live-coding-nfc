@@ -1,20 +1,50 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title color="light">
+      CEK SALDO
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" color="light-tint">
+  <div class="elemen">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
+
+<ion-card class="nfc">
+  <ion-card-content>
+    <ion-item lines="none" class="ion-text-center">
+      <ion-label>
+        <h2>Tempelkan Kartu</h2>
+        <p>Lokasi NFC bisa berada di belakang atau depan perangkat ini</p>
+      </ion-label>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+
+<!-- <ion-card class="nfc_aktif"> -->
+  <!-- <ion-card-content> -->
+    <ion-item class="nfc_aktif" lines="none">
+      <ion-icon name="radio-button-on" color="success"></ion-icon>
+      <ion-label color="light">
+        NFC Aktif
+      </ion-label>
+    </ion-item>
+  <!-- </ion-card-content> -->
+<!-- </ion-card> -->
+
+<ion-card class="center-card">
+  <ion-card-content>
+    <ion-label>NFC Event Data:</ion-label>
+    <ion-text>{{ nfcNumber }}</ion-text>
+    <ion-text>{{ latitude }}</ion-text>
+    <ion-text>{{ longitude }}</ion-text>
+  </ion-card-content>
+</ion-card> 
+
+<ion-button (click)="sendEmail()" expand="block">Kirim</ion-button>
+<ion-button (click)="history()" expand="block">lihat riwayat</ion-button>
+
+
+  
 </ion-content>

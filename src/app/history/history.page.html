@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>history</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">history</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card *ngFor="let data of datas" routerLink="/detail">
+    <ion-card-header>
+      <ion-card-title>{{data?.nama}}</ion-card-title>
+      <ion-card-subtitle>{{data?.nik}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{data?.alamat}}
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-card-title>ilyas</ion-card-title>
+      <ion-card-subtitle>2131</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      subang
+    </ion-card-content>
+  </ion-card> -->
+</ion-content>
